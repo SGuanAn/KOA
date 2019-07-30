@@ -8,6 +8,9 @@ const AlldataController = require('../controller/AlldataController')
 const ReceiveController = require('../controller/ReceiveController')
 const standardController = require('../controller/standardController')
 const IntegralController = require('../controller/IntegralController')
+const OverseasController = require('../controller/OverseasController')
+const FreshmenController = require('../controller/FreshmenController')
+const FileManageController = require('../controller/FileManageController')
 
 const storage = multer.diskStorage({
     destination(req,file,cb){
@@ -71,6 +74,13 @@ router.post('/alldata/excel', AlldataController.ImportExcel); // 导入Excel
 **/
 router.get('/Receive/listData', ReceiveController.ReceiveList); // 查询列表
 
+
+/**
+ * 文件管理
+**/
+router.get('/FileManage/all', FileManageController.FileManage); // 文件 path
+
+
 /**
  * 标准客户
 **/
@@ -91,6 +101,8 @@ router.post('/standard/customer', standardController.CustomerData); // 步骤 =>
 router.get('/standard/customerList', standardController.CustomerList); // 办理身份证列表 查询
 router.post('/standard/end', standardController.EndData); // 步骤 => 已办理完结
 router.get('/standard/endList', standardController.EndList); // 已办理完结列表 查询
+router.post('/standard/branch', standardController.Distribution); // 转让
+router.post('/standard/refund', standardController.RefundData); // 退费
 
 /**
  * 积分客户
@@ -112,6 +124,53 @@ router.post('/Integral/customer', IntegralController.CustomerData); // 步骤 =>
 router.get('/Integral/customerList', IntegralController.CustomerList); // 办理身份证列表 查询
 router.post('/Integral/end', IntegralController.EndData); // 步骤 => 已办理完结
 router.get('/Integral/endList', IntegralController.EndList); // 已办理完结列表 查询
+router.post('/Integral/branch', IntegralController.Distribution); // 转让
+router.post('/Integral/refund', IntegralController.RefundData); // 退费
+
+/**
+ * 留学生
+**/
+router.get('/overseas/waitList', OverseasController.WaitList); // 待录列表 查询
+router.post('/overseas/checkData', OverseasController.checkData); // 步骤 => 核对资料
+router.get('/overseas/checkList', OverseasController.checkList); // 核对列表 查询
+router.post('/overseas/quali', OverseasController.InspectData); // 步骤 => 资格认证
+router.get('/overseas/qualiList', OverseasController.InspectList); // 资格认证列表 查询
+router.post('/overseas/examine', OverseasController.ExamineData); // 步骤 => 一审
+router.get('/overseas/examineList', OverseasController.ExamineList); // 一审列表 查询
+router.post('/overseas/adopt', OverseasController.AdoptData); // 步骤 => 审批通过
+router.get('/overseas/adoptList', OverseasController.AdoptList); // 审批通过列表 查询
+router.post('/overseas/migration', OverseasController.MigrationData); // 步骤 => 办理准迁证
+router.get('/overseas/migrationList', OverseasController.MigrationList); // 办理准迁证列表 查询
+router.post('/overseas/transfer', OverseasController.TransferData); // 步骤 => 办理迁移证
+router.get('/overseas/transferList', OverseasController.TransferList); // 办理迁移证列表 查询
+router.post('/overseas/customer', OverseasController.CustomerData); // 步骤 => 办理身份证
+router.get('/overseas/customerList', OverseasController.CustomerList); // 办理身份证列表 查询
+router.post('/overseas/end', OverseasController.EndData); // 步骤 => 已办理完结
+router.get('/overseas/endList', OverseasController.EndList); // 已办理完结列表 查询
+router.post('/overseas/branch', OverseasController.Distribution); // 转让
+router.post('/overseas/refund', OverseasController.RefundData); // 退费
+
+/**
+ * 应届生
+**/
+router.get('/Freshmen/waitList', FreshmenController.WaitList); // 待录列表 查询
+router.post('/Freshmen/checkData', FreshmenController.checkData); // 步骤 => 核对资料
+router.get('/Freshmen/checkList', FreshmenController.checkList); // 核对列表 查询
+router.post('/Freshmen/report', FreshmenController.InspectData); // 步骤 => 改派报到证中
+router.get('/Freshmen/reportList', FreshmenController.InspectList); // 改派报到证中列表 查询
+router.post('/Freshmen/online', FreshmenController.ExamineData); // 步骤 => 网上报道
+router.get('/Freshmen/onlineList', FreshmenController.ExamineList); // 网上报道列表 查询
+router.post('/Freshmen/migration', FreshmenController.MigrationData); // 步骤 => 办理准迁证
+router.get('/Freshmen/migrationList', FreshmenController.MigrationList); // 办理准迁证列表 查询
+router.post('/Freshmen/transfer', FreshmenController.TransferData); // 步骤 => 办理迁移证
+router.get('/Freshmen/transferList', FreshmenController.TransferList); // 办理迁移证列表 查询
+router.post('/Freshmen/customer', FreshmenController.CustomerData); // 步骤 => 办理身份证
+router.get('/Freshmen/customerList', FreshmenController.CustomerList); // 办理身份证列表 查询
+router.post('/Freshmen/end', FreshmenController.EndData); // 步骤 => 已办理完结
+router.get('/Freshmen/endList', FreshmenController.EndList); // 已办理完结列表 查询
+router.post('/Freshmen/branch', FreshmenController.Distribution); // 转让
+router.post('/Freshmen/refund', FreshmenController.RefundData); // 退费
+
 
 
 module.exports = router

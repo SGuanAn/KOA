@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel')
+const userModel = require('../models/User/userModel')
 const jwt = require('jsonwebtoken')
 const md5 = require('../common/index')
 const solt = 'qinxuejiao' //md5加密索引可自行修改

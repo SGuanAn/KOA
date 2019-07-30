@@ -1,4 +1,4 @@
-const PermissionModel = require('../models/PermissionModel')
+const PermissionModel = require('../models/Permission/PermissionModel')
 
 class PermissionController {
     /**

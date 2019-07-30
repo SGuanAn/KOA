@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     createTime: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: '0000-00-00 00:00:00'
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     },
     role_id: {
       type: DataTypes.INTEGER(20),

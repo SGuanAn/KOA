@@ -124,7 +124,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(20),
       allowNull: true
     },
-    declare: {
+    Sdeclare: {
       type: DataTypes.STRING(20),
       allowNull: true
     },
@@ -164,6 +164,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    queryKey: {
+      type: DataTypes.INTEGER(10),
+      allowNull: false,
+      defaultValue: '1'
     }
   }, {
     tableName: 'integral'

@@ -1,13 +1,13 @@
-const StandardWaitModel = require('../models/StandardWaitModel')
-const StandardCheckModel = require('../models/StandardCheckModel')
-const StandardInspectModel = require('../models/StandardInspectModel')
-const StandardExamineModel = require('../models/StandardExamineModel')
-const StandardModel = require('../models/StandardModel')
-const StandardAdoptModel = require('../models/StandardAdoptModel')
-const StandardMigrationModel = require('../models/StandardMigrationModel')
-const StandardTransferModel = require('../models/StandardTransferModel')
-const StandardCustomerModel = require('../models/StandardCustomerModel')
-const StandardEndModel = require('../models/StandardEndModel')
+const StandardWaitModel = require('../models/Standard/StandardWaitModel')
+const StandardCheckModel = require('../models/Standard/StandardCheckModel')
+const StandardInspectModel = require('../models/Standard/StandardInspectModel')
+const StandardExamineModel = require('../models/Standard/StandardExamineModel')
+const StandardModel = require('../models/Standard/StandardModel')
+const StandardAdoptModel = require('../models/Standard/StandardAdoptModel')
+const StandardMigrationModel = require('../models/Standard/StandardMigrationModel')
+const StandardTransferModel = require('../models/Standard/StandardTransferModel')
+const StandardCustomerModel = require('../models/Standard/StandardCustomerModel')
+const StandardEndModel = require('../models/Standard/StandardEndModel')
 
 class standardController {
      /**
@@ -288,6 +288,56 @@ class standardController {
             }
         }
     }
+
+    /**
+     * 转出数据
+     */
+    static async Distribution(ctx) {
+        const data = ctx.request.body;
+        console.log(data)
+        const queryTrue = await StandardModel.query(data.id);
+        if(queryTrue[0]) {
+            for(let i in queryTrue) {
+                queryTrue[i].belong = data.username
+                const addTrue = await StandardModel.RollOut(queryTrue[i]);
+                if(addTrue){
+                    ctx.body = {
+                        code:200,
+                        msg:'操作成功'
+                    }
+                }
+            }
+        } else {
+            ctx.body = {
+                code: -200,
+                msg: '操作失败'
+            }
+        }
+    }
+
+    /**
+     * 退费
+     */
+    static async RefundData(ctx) {
+        const ids = ctx.request.body;
+        const idTrue = await StandardModel.query(ids);
+        if(idTrue[0]) {
+            for( var i in idTrue) {
+                idTrue[i].progress = '退费'
+                const addTrue = await StandardModel.upData(idTrue[i]);
+                ctx.body = {
+                    code: 200,
+                    msg: '操作成功'
+                }
+            }
+        } else {
+            ctx.body = {
+                code: -200,
+                msg: '操作失败'
+            }
+        }
+    }
+    
     
 }
 module.exports = standardController

@@ -1,21 +1,21 @@
-const IntegralWaitModel = require('../models/Integral/IntegralWaitModel')
-const IntegralCheckModel = require('../models/Integral/IntegralCheckModel')
-const IntegralInspectModel = require('../models/Integral/IntegralInspectModel')
-const IntegralExamineModel = require('../models/Integral/IntegralExamineModel')
-const IntegralModel = require('../models/Integral/IntegralModel')
-const IntegralAdoptModel = require('../models/Integral/IntegralAdoptModel')
-const IntegralMigrationModel = require('../models/Integral/IntegralMigrationModel')
-const IntegralTransferModel = require('../models/Integral/IntegralTransferModel')
-const IntegralCustomerModel = require('../models/Integral/IntegralCustomerModel')
-const IntegralEndModel = require('../models/Integral/IntegralEndModel')
+const OverseasWaitModel = require('../models/Overseas/OverseasWaitModel')
+const OverseasCheckModel = require('../models/Overseas/OverseasCheckModel')
+const OverseasQualiModel = require('../models/Overseas/OverseasQualiModel')
+const OverseasExamineModel = require('../models/Overseas/OverseasExamineModel')
+const OverseasModel = require('../models/Overseas/OverseasModel')
+const OverseasAdoptModel = require('../models/Overseas/OverseasAdoptModel')
+const OverseasMigrationModel = require('../models/Overseas/OverseasMigrationModel')
+const OverseasTransferModel = require('../models/Overseas/OverseasTransferModel')
+const OverseasCustomerModel = require('../models/Overseas/OverseasCustomerModel')
+const OverseasEndModel = require('../models/Overseas/OverseasEndModel')
 
-class IntegralController {
+class OverseasController {
      /**
      * 代录 => 列表查询
     */
     static async WaitList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralWaitModel.queryList(data);
+        const queryTrue = await OverseasWaitModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -30,7 +30,7 @@ class IntegralController {
      */
     static async checkList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralCheckModel.queryList(data);
+        const queryTrue = await OverseasCheckModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -41,11 +41,11 @@ class IntegralController {
     }
 
     /**
-     *  已体检 => 列表查询
+     *  资格认证 => 列表查询
      */
     static async InspectList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralInspectModel.queryList(data);
+        const queryTrue = await OverseasQualiModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -60,7 +60,7 @@ class IntegralController {
      */
     static async ExamineList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralExamineModel.queryList(data);
+        const queryTrue = await OverseasExamineModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -75,7 +75,7 @@ class IntegralController {
      */
     static async AdoptList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralAdoptModel.queryList(data);
+        const queryTrue = await OverseasAdoptModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -90,7 +90,7 @@ class IntegralController {
      */
     static async MigrationList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralMigrationModel.queryList(data);
+        const queryTrue = await OverseasMigrationModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -105,7 +105,7 @@ class IntegralController {
      */
     static async TransferList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralTransferModel.queryList(data);
+        const queryTrue = await OverseasTransferModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -120,7 +120,7 @@ class IntegralController {
      */
     static async CustomerList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralCustomerModel.queryList(data);
+        const queryTrue = await OverseasCustomerModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -135,7 +135,7 @@ class IntegralController {
      */
     static async EndList(ctx) {
         const data = ctx.query;
-        const queryTrue = await IntegralEndModel.queryList(data);
+        const queryTrue = await OverseasEndModel.queryList(data);
         if(queryTrue){
             ctx.body = {
                 code: 200,
@@ -150,11 +150,11 @@ class IntegralController {
      */
     static async checkData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '核对资料'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -164,15 +164,15 @@ class IntegralController {
     }
 
     /**
-     * 步骤 => 已体检
+     * 步骤 => 资格认证
      */
     static async InspectData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
-                idTrue[i].progress = '已体检'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                idTrue[i].progress = '资格认证'
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -186,11 +186,11 @@ class IntegralController {
      */
     static async ExamineData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '一审'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -204,11 +204,11 @@ class IntegralController {
      */
     static async AdoptData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '审批通过'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -222,11 +222,11 @@ class IntegralController {
      */
     static async MigrationData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '办理准迁证'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -240,11 +240,11 @@ class IntegralController {
      */
     static async TransferData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '办理迁移证'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -258,11 +258,11 @@ class IntegralController {
      */
     static async CustomerData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '办理身份证'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -276,11 +276,11 @@ class IntegralController {
      */
     static async EndData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue) {
             for( var i in idTrue) {
                 idTrue[i].progress = '已办理完结'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -288,18 +288,18 @@ class IntegralController {
             }
         }
     }
-    
+
     /**
      * 转出数据
      */
     static async Distribution(ctx) {
         const data = ctx.request.body;
         console.log(data)
-        const queryTrue = await IntegralModel.query(data.id);
+        const queryTrue = await OverseasModel.query(data.id);
         if(queryTrue[0]) {
             for(let i in queryTrue) {
                 queryTrue[i].belong = data.username
-                const addTrue = await IntegralModel.RollOut(queryTrue[i]);
+                const addTrue = await OverseasModel.RollOut(queryTrue[i]);
                 if(addTrue){
                     ctx.body = {
                         code:200,
@@ -320,11 +320,11 @@ class IntegralController {
      */
     static async RefundData(ctx) {
         const ids = ctx.request.body
-        const idTrue = await IntegralModel.query(ids);
+        const idTrue = await OverseasModel.query(ids);
         if(idTrue[0]) {
             for( var i in idTrue) {
                 idTrue[i].progress = '退费'
-                const addTrue = await IntegralModel.upData(idTrue[i]);
+                const addTrue = await OverseasModel.upData(idTrue[i]);
                 ctx.body = {
                     code: 200,
                     msg: '操作成功'
@@ -337,6 +337,7 @@ class IntegralController {
             }
         }
     }
+
     
 }
-module.exports = IntegralController
+module.exports = OverseasController

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('alldata', {
+  return sequelize.define('freshmen', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -133,7 +133,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     Remarks: {
-      type: DataTypes.STRING(10000),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     major: {
@@ -171,6 +171,6 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: '1'
     }
   }, {
-    tableName: 'alldata'
+    tableName: 'freshmen'
   });
 };

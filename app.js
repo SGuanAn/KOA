@@ -18,6 +18,7 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+
 // app.use(require('koa-static')(__dirname + '/public'))
 
 // app.use(views(__dirname + '/dist', {
@@ -46,7 +47,7 @@ app.use(async (ctx, next) => {
       await next();
     } catch(err) {
         ctx.body = {
-          code: 401,
+          code: 50014,
           msg: '登录状态已过期，请重新登录验证！！'
         }
     }

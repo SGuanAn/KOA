@@ -1,4 +1,4 @@
-const ReceiveModel = require('../models/ReceiveModel');
+const ReceiveModel = require('../models/Receive/ReceiveModel');
 
 class ReceiveController {
     /**
