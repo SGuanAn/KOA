@@ -11,7 +11,7 @@ class AlldataController {
     */
     static async addData(ctx) {
         const data = ctx.request.body;
-        const queryTrue = await AlldataModel.UnionQuery(data.IDNumber, data.phone);
+        const queryTrue = await AlldataModel.UnionQuery(`'${data.IDNumber}'`, data.phone);
         if(queryTrue[0][0]) {
             ctx.body = {
                 code: -1,
@@ -68,11 +68,11 @@ class AlldataController {
         }
          //更新 积分制
         if (upData.Audit === '积分制' && upData.belong !== '无'){
+            console.log('1212')
             const editTrue = await IntegralModel.allupData(upData);
         } 
          //更新 留学生
         if (upData.Audit === '留学生' && upData.belong !== '无') {
-            console.log('留学生')
             const editTrue = await OverseasModel.allupData(upData);
         }
          //更新 应届生

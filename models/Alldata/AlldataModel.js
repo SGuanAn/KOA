@@ -145,9 +145,9 @@ class AlldataModel {
         }
         //查询工作进度
         if(progress){
-            totalSQL += ` AND progress like '%${progress}%'`
+            totalSQL += ` AND progress='${progress}'`
 
-            dataSQL += ` AND progress like '%${progress}%'`
+            dataSQL += ` AND progress='${progress}'`
         }
         //筛选时间查询
         if(time){

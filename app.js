@@ -8,6 +8,12 @@ const logger = require('koa-logger')
 const cors = require('koa2-cors')
 const index = require('./routes/index')
 const jwt = require('jsonwebtoken')
+const koaBody = require('koa-body');
+
+
+app.use(koaBody({
+    multipart: true,
+}));
 
 // 错误处理程序
 onerror(app)
@@ -18,12 +24,6 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
-
-// app.use(require('koa-static')(__dirname + '/public'))
-
-// app.use(views(__dirname + '/dist', {
-//   extension: 'html'
-// }))
 
 //CORS 跨越处理
 app.use(cors({

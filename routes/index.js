@@ -11,6 +11,7 @@ const IntegralController = require('../controller/IntegralController')
 const OverseasController = require('../controller/OverseasController')
 const FreshmenController = require('../controller/FreshmenController')
 const FileManageController = require('../controller/FileManageController')
+const IndexController = require('../controller/IndexController')
 
 const storage = multer.diskStorage({
     destination(req,file,cb){
@@ -21,10 +22,18 @@ const storage = multer.diskStorage({
       const fileName = UUID.v1()
       cb(null, fileName + extName);
     }
-  })
+})
   
   const upload = multer({storage});
 
+
+/**
+ * 首页
+**/
+router.get('/dashboard/MyData', IndexController.Mydata) //我的数据
+router.get('/dashboard/Label', IndexController.LabelTotal) //完成总数
+router.get('/dashboard/newData', IndexController.NewData) //新录数据
+router.get('/dashboard/details', IndexController.Details) //数据详情
 
 /**
  * 用户
@@ -63,7 +72,7 @@ router.put('/edit/power', PermissionController.editPower); //编辑角色权限
  * 所有数据
 **/
 router.get('/alldata/getList', AlldataController.getList); // 查询列表
-router.delete('/alldata/delete', AlldataController.delete); // 删除
+router.post('/alldata/delete', AlldataController.delete); // 删除
 router.post('/alldata/add', AlldataController.addData); // 添加
 router.put('/alldata/edit', AlldataController.edit); // 更新
 router.post('/alldata/receive', AlldataController.Receive); // 领取
@@ -79,7 +88,10 @@ router.get('/Receive/listData', ReceiveController.ReceiveList); // 查询列表
  * 文件管理
 **/
 router.get('/FileManage/all', FileManageController.FileManage); // 文件 path
-
+router.post('/FileManage/createFolder', FileManageController.createFolder); // 创建文件夹
+router.post('/FileManage/uploadData', FileManageController.uploadData); // 上传资料
+router.post('/FileManage/renameFile', FileManageController.renameFile); // 重命名
+router.post('/FileManage/deleteFile', FileManageController.deleteFile); // 删除文件
 
 /**
  * 标准客户
