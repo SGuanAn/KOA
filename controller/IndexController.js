@@ -1,4 +1,5 @@
 const IndexModel = require('../models/Index/IndexModel')
+const jwt = require('jsonwebtoken')
 
 class IndexController {
     /**
@@ -42,9 +43,9 @@ class IndexController {
     /**
      *  我的数据详情
      */
-    static async Details(ctx) {
-        const username = ctx.query.name
-        const Arrs = await IndexModel.DataDetails(username);
+    static async Details(name) {
+        
+        const Arrs = await IndexModel.DataDetails(name);
         let standard = [
             //标准制
             { total: 0, tag: '待录' },
@@ -56,7 +57,7 @@ class IndexController {
             { total: 0, tag: '办理迁移证' },
             { total: 0, tag: '办理身份证' },
             { total: 0, tag: '已办理完结' },
-            {total: 0, tag: '退费'}
+
         ];
         let Integral = [
             //积分制
@@ -69,7 +70,7 @@ class IndexController {
             { total: 0, tag: '办理迁移证' },
             { total: 0, tag: '办理身份证' },
             { total: 0, tag: '已办理完结' },
-            {total: 0, tag: '退费'}
+            
         ];
         let Overseas = [
             //留学生
@@ -82,7 +83,7 @@ class IndexController {
             { total: 0, tag: '办理迁移证' },
             { total: 0, tag: '办理身份证' },
             { total: 0, tag: '已办理完结' },
-            {total: 0, tag: '退费'}
+            
         ];
         let Freshmen = [
             //应届生
@@ -94,7 +95,7 @@ class IndexController {
             { total: 0, tag: '办理迁移证' },
             { total: 0, tag: '办理身份证' },
             { total: 0, tag: '已办理完结' },
-            {total: 0, tag: '退费'}
+            
         ];
         //标准制
         for(var i = 0; i < Arrs.standardArr.length; i++) {
@@ -132,8 +133,8 @@ class IndexController {
                 
             }
         }
-        ctx.body = { standard, Integral, Overseas, Freshmen }
-    }
+       return await { standard, Integral, Overseas, Freshmen };
+     }
 
 }
 

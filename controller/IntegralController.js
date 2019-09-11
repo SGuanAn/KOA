@@ -294,7 +294,6 @@ class IntegralController {
      */
     static async Distribution(ctx) {
         const data = ctx.request.body;
-        console.log(data)
         const queryTrue = await IntegralModel.query(data.id);
         if(queryTrue[0]) {
             for(let i in queryTrue) {

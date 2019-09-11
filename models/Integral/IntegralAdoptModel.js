@@ -20,7 +20,7 @@ class IntegralAdoptModel {
                     progress: '审批通过'
                 },
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -30,7 +30,7 @@ class IntegralAdoptModel {
         if (Founder && Object.keys(searchVal).length === 1 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -54,7 +54,7 @@ class IntegralAdoptModel {
         if (Audit && Object.keys(searchVal).length === 1 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -71,7 +71,7 @@ class IntegralAdoptModel {
         if (Entrance && Object.keys(searchVal).length === 1 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -88,17 +88,17 @@ class IntegralAdoptModel {
         if (time && Object.keys(searchVal).length === 1 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         },
@@ -114,7 +114,7 @@ class IntegralAdoptModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -137,7 +137,7 @@ class IntegralAdoptModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -160,7 +160,7 @@ class IntegralAdoptModel {
         if(Founder && time && Object.keys(searchVal).length === 2 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -177,12 +177,12 @@ class IntegralAdoptModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -196,7 +196,7 @@ class IntegralAdoptModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -212,7 +212,7 @@ class IntegralAdoptModel {
         if(Audit && time && Object.keys(searchVal).length === 2 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -222,12 +222,12 @@ class IntegralAdoptModel {
                                 { belong:  data.username },
                                 { progress: '审批通过' },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -241,7 +241,7 @@ class IntegralAdoptModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3 && data.username){
             return await Integral.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -252,12 +252,12 @@ class IntegralAdoptModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

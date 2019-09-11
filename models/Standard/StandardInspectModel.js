@@ -20,7 +20,7 @@ class StandardInspectModel {
                     progress: '已体检'
                 },
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -30,7 +30,7 @@ class StandardInspectModel {
         if (Founder && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -54,7 +54,7 @@ class StandardInspectModel {
         if (Audit && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -71,7 +71,7 @@ class StandardInspectModel {
         if (Entrance && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -88,17 +88,17 @@ class StandardInspectModel {
         if (time && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         },
@@ -114,7 +114,7 @@ class StandardInspectModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -137,7 +137,7 @@ class StandardInspectModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -160,7 +160,7 @@ class StandardInspectModel {
         if(Founder && time && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -177,12 +177,12 @@ class StandardInspectModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -196,7 +196,7 @@ class StandardInspectModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -212,7 +212,7 @@ class StandardInspectModel {
         if(Audit && time && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -222,12 +222,12 @@ class StandardInspectModel {
                                 { belong:  data.username },
                                 { progress: '已体检' },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -241,7 +241,7 @@ class StandardInspectModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -252,12 +252,12 @@ class StandardInspectModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

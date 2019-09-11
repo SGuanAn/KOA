@@ -19,9 +19,9 @@ class IndexModel {
      */
     static async queryLabelDatas(){
         const data = '已办理完结'
-        let SameMonthSQL = `SELECT * FROM (SELECT * FROM standard union all SELECT * FROM integral UNION all SELECT * FROM alldata UNION all SELECT * FROM overseas UNION all SELECT * FROM freshmen) as table_zjz where progress='${data}' AND DATE_FORMAT( createTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )`
+        let SameMonthSQL = `SELECT * FROM (SELECT * FROM standard union all SELECT * FROM integral UNION all SELECT * FROM alldata UNION all SELECT * FROM overseas UNION all SELECT * FROM freshmen) as table_zjz where progress='${data}' AND DATE_FORMAT( updateTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )`
 
-        let LastMonthSQL = `SELECT * FROM (SELECT * FROM standard union all SELECT * FROM integral UNION all SELECT * FROM alldata UNION all SELECT * FROM overseas UNION all SELECT * FROM freshmen) as table_zjz where progress='${data}' AND PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( createTime, '%Y%m' ) ) =1`
+        let LastMonthSQL = `SELECT * FROM (SELECT * FROM standard union all SELECT * FROM integral UNION all SELECT * FROM alldata UNION all SELECT * FROM overseas UNION all SELECT * FROM freshmen) as table_zjz where progress='${data}' AND PERIOD_DIFF( date_format( now( ) , '%Y%m' ) , date_format( updateTime, '%Y%m' ) ) =1`
 
         let SameMonth = await Mysql.query(SameMonthSQL);
         let LastMonth = await Mysql.query(LastMonthSQL);

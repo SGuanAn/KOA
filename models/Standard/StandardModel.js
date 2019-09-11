@@ -75,6 +75,7 @@ class StandardModel {
             Founder: data.Founder, //创建人
             belong: data.belong, //归属用户
             createTime: data.createTime, //创建时间
+            updateTime: Date.now(), // 更新时间
         })
     }
 
@@ -96,7 +97,10 @@ class StandardModel {
     */
     static async upData(data) {
         return await Standard.update(
-            { progress: data.progress },
+            { 
+                progress: data.progress,
+                updateTime: Date.now(), // 更新时间
+             },
             {
                 where: {
                     id: data.id

@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('overseas', {
+  return sequelize.define('learnform', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -44,129 +44,112 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(10),
       allowNull: true
     },
-    detailed: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    HouseholdProvince: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    HouseholdCity: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    HouseholdA: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    learn: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    graduation: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    Company: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    email: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    social: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
     address: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Children: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Account: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    AccountPassword: {
       type: DataTypes.STRING(20),
       allowNull: true
     },
     Total: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: '0'
     },
-    Pay: {
+    one_Tuition: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: '0'
+    },
+    two_Tuition: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      defaultValue: '0'
     },
     Unpaid: {
       type: DataTypes.BIGINT,
-      allowNull: true
-    },
-    source: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Audit: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Entrance: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    payment: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Sdeclare: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    progress: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Remarks: {
-      type: DataTypes.STRING(10000),
-      allowNull: true
-    },
-    major: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    XueXin: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    XueXinPassword: {
-      type: DataTypes.STRING(20),
-      allowNull: true
-    },
-    Immigration: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    Founder: {
-      type: DataTypes.STRING(10),
-      allowNull: true
-    },
-    belong: {
-      type: DataTypes.STRING(10),
-      allowNull: true
+      allowNull: false,
+      defaultValue: '0'
     },
     createTime: {
       type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      allowNull: true
+    },
+    source: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    promote: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    Enrolment: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    payment: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    major_enrollment: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    batch: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    receipt: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    student_account: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    student_password: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    Payment_status: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
+    signTime: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    recruit_teacher: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    reception_teacher: {
+      type: DataTypes.STRING(10),
+      allowNull: true
+    },
+    Remarks: {
+      type: DataTypes.STRING(20000),
+      allowNull: true
+    },
+    Types_type: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
+    mail: {
+      type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    emergency_contact: {
+      type: DataTypes.STRING(30),
+      allowNull: true
+    },
+    register: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    Political: {
+      type: DataTypes.STRING(20),
+      allowNull: true
     },
     queryKey: {
-      type: DataTypes.INTEGER(10),
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       defaultValue: '1'
     },
@@ -175,6 +158,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'overseas'
+    tableName: 'learnform'
   });
 };

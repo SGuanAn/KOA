@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     name: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(30),
       allowNull: true
     },
     Gender: {
@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     IDNumber: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(30),
       allowNull: true
     },
     BirthDate: {
@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     phone: {
-      type: DataTypes.STRING(11),
+      type: DataTypes.STRING(30),
       allowNull: true
     },
     Occupation: {
@@ -133,7 +133,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     Remarks: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(10000),
       allowNull: true
     },
     major: {
@@ -169,6 +169,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(10),
       allowNull: false,
       defaultValue: '1'
+    },
+    updateTime: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     tableName: 'standard'

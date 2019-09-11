@@ -48,7 +48,10 @@ class OverseasModel {
     */
    static async upData(data) {
         return await Overseas.update(
-            { progress: data.progress },
+            { 
+                progress: data.progress,
+                updateTime: Date.now(), // 更新时间
+             },
             {
                 where: {
                     id: data.id
@@ -167,6 +170,7 @@ class OverseasModel {
             Founder: data.Founder, //创建人
             belong: data.belong, //归属用户
             createTime: data.createTime, //创建时间
+            updateTime: Date.now(), // 更新时间
         })
     }
 
@@ -181,7 +185,7 @@ class OverseasModel {
         if(Object.keys(searchVal).length === 0){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -191,7 +195,7 @@ class OverseasModel {
         if (Founder && Object.keys(searchVal).length === 1){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.or]: [
@@ -209,7 +213,7 @@ class OverseasModel {
         if (Audit && Object.keys(searchVal).length === 1){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     Audit: Audit
@@ -222,7 +226,7 @@ class OverseasModel {
         if (Entrance && Object.keys(searchVal).length === 1){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     Entrance: Entrance
@@ -235,17 +239,17 @@ class OverseasModel {
         if (time && Object.keys(searchVal).length === 1){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         }
@@ -260,7 +264,7 @@ class OverseasModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -281,7 +285,7 @@ class OverseasModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -302,7 +306,7 @@ class OverseasModel {
         if(Founder && time && Object.keys(searchVal).length === 2){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -317,12 +321,12 @@ class OverseasModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -336,7 +340,7 @@ class OverseasModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -350,7 +354,7 @@ class OverseasModel {
         if(Audit && time && Object.keys(searchVal).length === 2){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -358,12 +362,12 @@ class OverseasModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -377,7 +381,7 @@ class OverseasModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3){
             return await Overseas.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -386,12 +390,12 @@ class OverseasModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

@@ -48,6 +48,7 @@ class AlldataModel {
             Founder: data.Founder, //创建人
             belong: data.belong, //归属用户
             createTime: data.createTime, //创建时间
+            updateTime: Date.now(), // 更新时间
         })
     }
 
@@ -151,12 +152,12 @@ class AlldataModel {
         }
         //筛选时间查询
         if(time){
-            totalSQL += ` AND (createTime >= '${time[0]}' and createTime <= '${time[1]}')`
+            totalSQL += ` AND (updateTime >= '${time[0]}' and updateTime <= '${time[1]}')`
 
-            dataSQL += ` AND (createTime >= '${time[0]}' and createTime <= '${time[1]}')`
+            dataSQL += ` AND (updateTime >= '${time[0]}' and updateTime <= '${time[1]}')`
         }
         
-        dataSQL += ` order by createTime DESC limit ${ster}, ${limit}`
+        dataSQL += ` order by updateTime DESC limit ${ster}, ${limit}`
 
         let Total = await Mysql.query(totalSQL);
         let DataList = await Mysql.query(dataSQL);

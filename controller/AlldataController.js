@@ -68,7 +68,6 @@ class AlldataController {
         }
          //更新 积分制
         if (upData.Audit === '积分制' && upData.belong !== '无'){
-            console.log('1212')
             const editTrue = await IntegralModel.allupData(upData);
         } 
          //更新 留学生
@@ -226,7 +225,6 @@ class AlldataController {
     */
    static async Distribution(ctx) {
        const data = ctx.request.body;
-       console.log(data)
        const arrName = [];
        const queryTrue = await AlldataModel.queryId(data.id);
        if(queryTrue[0]) {

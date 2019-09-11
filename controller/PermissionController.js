@@ -108,7 +108,6 @@ class PermissionController {
         // 查询数据库此角色是否存在权限
         const queryMenu = await PermissionModel.RoleMenu(role_id); 
         if(queryMenu){
-            console.log('1')
             //此角色在菜单权限中存在权限 => 更新
            const edit = await PermissionModel.upMenu(role_id, menusId);
            ctx.body = {
@@ -116,7 +115,6 @@ class PermissionController {
                msg: '修改成功'
            }
         } else {
-            console.log('2')
             //此角色在菜单权限中没有权限 => 创建
             const addMenu = await PermissionModel.addMenu(role_id, menusId);
             ctx.body = {

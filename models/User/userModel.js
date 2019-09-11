@@ -12,7 +12,6 @@ class UserModel {
      * 创建用户模型
     */
     static async addUser(data) {
-        console.log(data.createTime)
         return await User.create({
             username: data.username,
             password: data.password,
@@ -22,6 +21,7 @@ class UserModel {
             role_id: data.roleId,
             phone: data.phone,
             email: data.email,
+            state: data.state,
             createTime: data.createTime
         })
     }
@@ -153,8 +153,9 @@ class UserModel {
         var searchVal = data.keyWord
         if(searchVal == ''){
                 return await User.findAndCountAll({
+                    attributes: ['avatar','createTime', 'id', 'phone', 'role_id', 'state', 'username', 'usernames','email'],
                     order: [
-                        ['createTime', 'DESC']
+                        ['id', 'ASC']
                     ],
                     limit: limit,
                     offset: (page - 1) * limit
@@ -162,7 +163,7 @@ class UserModel {
         } else {
                 return await User.findAndCountAll({
                     order: [
-                        ['createTime', 'DESC']
+                        ['id', 'DESC']
                     ],
                     where: {
                         [Op.or]: [

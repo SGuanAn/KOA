@@ -1,6 +1,5 @@
-const router = require('koa-router')()
-const multer = require('koa-multer')
-const UUID = require('uuid') //生成唯一标识，作为文件名
+const Router = require('koa-router') // koa 路由中间件
+const router = new Router(); // 实例化路由
 const userController = require('../controller/userController')
 const RoleController = require('../controller/RoleController')
 const PermissionController = require('../controller/PermissionController')
@@ -12,19 +11,16 @@ const OverseasController = require('../controller/OverseasController')
 const FreshmenController = require('../controller/FreshmenController')
 const FileManageController = require('../controller/FileManageController')
 const IndexController = require('../controller/IndexController')
+const LearnFormController = require('../controller/LearnFormController')
 
-const storage = multer.diskStorage({
-    destination(req,file,cb){
-      cb(null, 'upload/images')
-    },
-    filename(req,file,cb){
-      const extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
-      const fileName = UUID.v1()
-      cb(null, fileName + extName);
-    }
-})
-  
-  const upload = multer({storage});
+
+/**
+ * 中间件处理
+ */
+// router.use('/', async (ctx) => {
+//     return ctx.body = 404
+// })
+
 
 
 /**
@@ -33,12 +29,13 @@ const storage = multer.diskStorage({
 router.get('/dashboard/MyData', IndexController.Mydata) //我的数据
 router.get('/dashboard/Label', IndexController.LabelTotal) //完成总数
 router.get('/dashboard/newData', IndexController.NewData) //新录数据
-router.get('/dashboard/details', IndexController.Details) //数据详情
+// router.get('/dashboard/details', IndexController.Details) //数据详情
 
 /**
  * 用户
 **/
 router.post('/user/login', userController.userSignIn) //用户登录
+router.get('/code', userController.getCode) //验证码
 router.post('/user/logout', userController.logout); //用户注销
 router.get('/user/info', userController.getUserInfo) //获取用户信息
 router.get('/user/list', userController.userList) //查询用户列表
@@ -48,7 +45,7 @@ router.put('/user/editUser', userController.editUser) //更新用户
 router.post('/user/validPass', userController.validPass); //验证用户密码
 router.put('/user/updatePass', userController.updatePass); //修改用户密码
 router.delete('/deleteUser/:id', userController.DeleteUser) //删除用户
-router.post('/user/updateAvatar', upload.single('file'), userController.updateAvatar); //头像上传
+router.post('/user/updateAvatar', userController.updateAvatar); //头像上传
 
 
 /**
@@ -78,6 +75,17 @@ router.put('/alldata/edit', AlldataController.edit); // 更新
 router.post('/alldata/receive', AlldataController.Receive); // 领取
 router.post('/alldata/branch', AlldataController.Distribution); // 分配
 router.post('/alldata/excel', AlldataController.ImportExcel); // 导入Excel
+
+
+/**
+ * 信息录入
+**/
+router.get('/learnForm/getList', LearnFormController.getList); // 查询列表
+router.post('/learnForm/delete', LearnFormController.delete); // 删除
+router.post('/learnForm/add', LearnFormController.addData); // 添加
+router.put('/learnForm/edit', LearnFormController.edit); // 更新
+router.post('/learnForm/excel', LearnFormController.ImportExcel); // 导入Excel
+
 /**
  * 领取数据
 **/

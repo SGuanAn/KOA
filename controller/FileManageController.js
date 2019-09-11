@@ -82,22 +82,35 @@ class FileManageController {
      */
     static async uploadData(ctx) {
         const path = ctx.request.body.filePath;
-        const files = ctx.request.files.file; // 获取上传文件
-        let filesArr = []
-        filesArr.push(files)
-        for (let file of filesArr) {
-          // 创建可读流
-          const reader = fs.createReadStream(file.path);
-          // 获取上传文件扩展名
-          let filePath = paths.join('./' + path) + `/${file.name}`;
-          // 创建可写流
-          const upStream = fs.createWriteStream(filePath);
-          // 可读流通过管道写入可写流
-          reader.pipe(upStream);
+        const filesArr = ctx.request.files.file; // 获取上传文件
+        if(Array.isArray(filesArr)){
+            await new Promise((resolve, reject) => {
+                for (let file of filesArr) {
+                    // 创建可读流
+                    const reader = fs.createReadStream(file.path);
+                    // 获取上传文件扩展名
+                    let filePath = paths.join('./' + path) + `/${file.name}`;
+                    // 创建可写流
+                    const upStream = fs.createWriteStream(filePath);
+                    // 可读流通过管道写入可写流
+                    reader.pipe(upStream);
+                }
+                resolve();
+            })
+        } else {
+             // 创建可读流
+             const reader = fs.createReadStream(filesArr.path);
+             // 获取上传文件扩展名
+             let filePath = paths.join('./' + path) + `/${filesArr.name}`;
+             // 创建可写流
+             const upStream = fs.createWriteStream(filePath);
+             // 可读流通过管道写入可写流
+             reader.pipe(upStream);
         }
         ctx.body = {
             code: 200,
-            msg: '上传成功'
+            msg: '上传成功',
+            filesArr
         }
     }
 

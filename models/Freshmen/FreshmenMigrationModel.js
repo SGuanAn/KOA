@@ -20,7 +20,7 @@ class FreshmenMigrationModel {
                     progress: '办理准迁证'
                 },
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -30,7 +30,7 @@ class FreshmenMigrationModel {
         if (Founder && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -54,7 +54,7 @@ class FreshmenMigrationModel {
         if (Audit && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -71,7 +71,7 @@ class FreshmenMigrationModel {
         if (Entrance && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -88,17 +88,17 @@ class FreshmenMigrationModel {
         if (time && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         },
@@ -114,7 +114,7 @@ class FreshmenMigrationModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -137,7 +137,7 @@ class FreshmenMigrationModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -160,7 +160,7 @@ class FreshmenMigrationModel {
         if(Founder && time && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -177,12 +177,12 @@ class FreshmenMigrationModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -196,7 +196,7 @@ class FreshmenMigrationModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -212,7 +212,7 @@ class FreshmenMigrationModel {
         if(Audit && time && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -222,12 +222,12 @@ class FreshmenMigrationModel {
                                 { belong:  data.username },
                                 { progress: '办理准迁证' },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -241,7 +241,7 @@ class FreshmenMigrationModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -252,12 +252,12 @@ class FreshmenMigrationModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

@@ -86,7 +86,7 @@ class FreshmenWaitModel {
                     progress: '待录'
                 },
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -96,7 +96,7 @@ class FreshmenWaitModel {
         if (Founder && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -120,7 +120,7 @@ class FreshmenWaitModel {
         if (Audit && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -137,7 +137,7 @@ class FreshmenWaitModel {
         if (Entrance && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -154,17 +154,17 @@ class FreshmenWaitModel {
         if (time && Object.keys(searchVal).length === 1 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         },
@@ -180,7 +180,7 @@ class FreshmenWaitModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -203,7 +203,7 @@ class FreshmenWaitModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -226,7 +226,7 @@ class FreshmenWaitModel {
         if(Founder && time && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -243,12 +243,12 @@ class FreshmenWaitModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -262,7 +262,7 @@ class FreshmenWaitModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -278,7 +278,7 @@ class FreshmenWaitModel {
         if(Audit && time && Object.keys(searchVal).length === 2 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -288,12 +288,12 @@ class FreshmenWaitModel {
                                 { belong:  data.username },
                                 { progress: '待录' },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -307,7 +307,7 @@ class FreshmenWaitModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3 && data.username){
             return await Freshmen.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -318,12 +318,12 @@ class FreshmenWaitModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

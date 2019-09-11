@@ -85,7 +85,7 @@ class StandardWaitModel {
                     progress: '待录'
                 },
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 limit: limit,
                 offset: (page - 1) * limit
@@ -95,7 +95,7 @@ class StandardWaitModel {
         if (Founder && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -119,7 +119,7 @@ class StandardWaitModel {
         if (Audit && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -136,7 +136,7 @@ class StandardWaitModel {
         if (Entrance && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -153,17 +153,17 @@ class StandardWaitModel {
         if (time && Object.keys(searchVal).length === 1 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.gte]: time[0]
                             }
                         },
                         {
-                            createTime:{ 
+                            updateTime:{ 
                                 [Op.lte]: time[1]
                             }
                         },
@@ -179,7 +179,7 @@ class StandardWaitModel {
         if(Founder && Audit && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -202,7 +202,7 @@ class StandardWaitModel {
         if(Founder && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -225,7 +225,7 @@ class StandardWaitModel {
         if(Founder && time && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -242,12 +242,12 @@ class StandardWaitModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -261,7 +261,7 @@ class StandardWaitModel {
         if(Audit && Entrance && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -277,7 +277,7 @@ class StandardWaitModel {
         if(Audit && time && Object.keys(searchVal).length === 2 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -287,12 +287,12 @@ class StandardWaitModel {
                                 { belong:  data.username },
                                 { progress: '待录' },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }
@@ -306,7 +306,7 @@ class StandardWaitModel {
         if(Audit && time && Entrance && Object.keys(searchVal).length === 3 && data.username){
             return await Standard.findAndCountAll({
                 order: [
-                    ['createTime', 'DESC']
+                    ['updateTime', 'DESC']
                 ],
                 where:{
                     [Op.and]:[
@@ -317,12 +317,12 @@ class StandardWaitModel {
                         {
                             [Op.and]:[
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.gte]: time[0]
                                     }
                                 },
                                 {
-                                    createTime:{ 
+                                    updateTime:{ 
                                         [Op.lte]: time[1]
                                     }
                                 }

@@ -44,6 +44,10 @@ module.exports = function(sequelize, DataTypes) {
     usernames: {
       type: DataTypes.STRING(255),
       allowNull: true
+    },
+    state: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
     }
   }, {
     tableName: 'admin'
